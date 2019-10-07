@@ -1,0 +1,41 @@
+﻿table {
+    border: 3px solid black;
+}
+
+tr {
+    border: 2px solid black;
+}
+
+th {
+    border: 1px solid black;
+    margin: 8px;
+    padding: 8px;
+}
+
+td {
+    border: 1px solid black;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 8px;
+    padding: 8px;
+    white-space: nowrap;
+}
+
+.page-container {
+    display:flex;
+    flex-direction:row;
+}
+
+.main-container {
+    width: 1515px;
+    margin:10px;
+}
+
+.filter-container {
+    width: 300px;
+    margin:10px;
+    border-right: 1px, solid, black;
+}
+
+.input-field {
+    margin:4px;
+}

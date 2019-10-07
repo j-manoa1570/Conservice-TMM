@@ -1,0 +1,191 @@
+﻿
+
+@model TMM_Asp.Models.TeamMembersModel
+
+@{
+    ViewData["Title"] = "Member";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+    <div class="page-container">
+        
+        <!-- Div for filter options -->
+        <div class="filter-container">
+            <h4>Options:</h4>
+            <hr />
+            <!-- Sort option -->
+            <div>
+                <text>Sort By:</text>
+                <select>
+                    <option value="FirstName">First Name</option>
+                    <option value="LastName">Last Name</option>
+                    <option value="Address">Address</option>
+                    <option value="EmailAddress">Email Address</option>
+                    <option value="PhoneNumber">Phone Number</option>
+                    <option value="Position">Position</option>
+                    <option value="Department">Department</option>
+                    <option value="StartDate">Start Date</option>
+                    <option value="EndDate">End Date</option>
+                    <option value="EmploymentStatus">Employment Status</option>
+                    <option value="Shift">Shift</option>
+                    <option value="Manager">Manager</option>
+                    <option value="FavoriteColor">Favorite Color</option>
+
+                </select>
+                <hr />
+            </div>
+
+            <!-- Search Employee -->
+            <div>
+                <text>Search by Name:</text>
+                <form action="">
+                    <div class="input-field">
+                         First Name: <input type="text" name="fname" /><br />
+                    </div>
+                    <div class="input-field">
+                        Last Name: <input type="text" name="lname" /><br />
+                    </div>
+                    <input type="submit" value="Search" />
+                </form>
+                <hr />
+            </div>
+
+            <!-- Filter Options -->
+            <div>
+                <text>Filter Employees:</text>
+                <form>
+
+                    <!-- Department -->
+                    <div>
+                        <text>Department:</text> <br />
+                        @foreach (var departments in Model.Department)
+                        {
+                            <input type="checkbox" />@departments.Key <text>(@departments.Value)</text> <br />
+                        }
+                        <hr />
+                    </div>
+
+                    <!-- Employment -->
+                    <div>
+                        <text>Employment:</text> <br />
+                        @foreach (var employment in Model.Employment)
+                        {
+                            <input type="checkbox" />@employment.Key <text>(@employment.Value)</text> <br />
+                        }
+                        <hr />
+                    </div>
+
+                    <!-- Position -->
+                    <div>
+                        <text>Position:</text> <br />
+                        @foreach (var position in Model.Position)
+                        {
+                            <input type="checkbox" />@position.Key <text>(@position.Value)</text> <br />
+                        }
+                        <hr />
+                    </div>
+
+                    <!-- Shift -->
+                    <div>
+                        <text>Shift:</text> <br />
+                        @foreach (var shift in Model.Shift)
+                        {
+                            <input type="checkbox" />@shift.Key <text>(@shift.Value)</text> <br />
+                        }
+                        <hr />
+                    </div>
+
+                    <!-- Manager -->
+                    <div>
+                        <text>Manager:</text> <br />
+                        @foreach (var manager in Model.Manager)
+                        {
+                            <input type="checkbox" />@manager.Key <text>(@manager.Value)</text> <br />
+                        }
+                        <hr />
+                    </div>
+                    <button type="submit" value="Filter">Filter</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Main Page -->
+        <div class="main-container">
+
+            <!-- This is the bar across the top of the table with options such as add and delete -->
+            <div class="input-field">
+
+                <!-- Add Team Member Modal -->
+                <button type="button" class="" data-toggle="modal" data-target="#myModal">Add</button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Some text in the modal.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Delete Team Member -->
+                <button type="button" class="" >Delete</button>
+            </div>
+
+            <!-- Table -->
+            <table class="container">
+                <tr>
+                    <th>Select</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Address</th>
+                    <th>Email Address</th>
+                    <th>Phone Number</th>
+                    <th>Photo</th>
+                    <th>Position</th>
+                    <th>Department</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Employment Status</th>
+                    <th>Shift</th>
+                    <th>Manager</th>
+                    <th>Favorite Color</th>
+                </tr>
+
+                @foreach (var member in Model.Employees)
+                {
+                    <tr>
+                        <td><input type="checkbox" /></td>
+                        <td>@member.FirstName</td>
+                        <td>@member.LastName</td>
+                        <td>@member.Address</td>
+                        <td>@member.EmailAddress</td>
+                        <td>@member.PhoneNumber</td>
+                        <td>@member.Photo</td>
+                        <td>@member.Position</td>
+                        <td>@member.Department</td>
+                        <td>@member.StartDate</td>
+                        <td>@member.EndDate</td>
+                        <td>@member.EmploymentStatus</td>
+                        <td>@member.Shift</td>
+                        <td>@member.Manager</td>
+                        <td>@member.FavoriteColor</td>
+                    </tr>
+                }
+            </table>
+
+        </div>
+
+            </div>

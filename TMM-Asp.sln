@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMM-Asp", "TMM-Asp.csproj", "{D7A066BE-A86E-4AAF-8851-73161209E584}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7A066BE-A86E-4AAF-8851-73161209E584}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7A066BE-A86E-4AAF-8851-73161209E584}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7A066BE-A86E-4AAF-8851-73161209E584}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7A066BE-A86E-4AAF-8851-73161209E584}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4EE7FD75-07C7-4061-9103-D2607BE02D0A}
+	EndGlobalSection
+EndGlobal

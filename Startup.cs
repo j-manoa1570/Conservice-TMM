@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using TMM_Asp.Models;
+using TMM_Asp.Data;
 
 namespace TMM_Asp
 {
@@ -24,6 +27,8 @@ namespace TMM_Asp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<DBModel>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("TeamMemberDB")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

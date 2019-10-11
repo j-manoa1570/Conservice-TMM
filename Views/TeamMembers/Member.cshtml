@@ -18,34 +18,38 @@
             <!-- Sort option -->
             <div>
                 <text>Sort By:</text>
-                <select>
-                    <option value="FirstName">First Name</option>
-                    <option value="LastName">Last Name</option>
-                    <option value="Address">Address</option>
-                    <option value="EmailAddress">Email Address</option>
-                    <option value="PhoneNumber">Phone Number</option>
-                    <option value="Position">Position</option>
-                    <option value="Department">Department</option>
-                    <option value="StartDate">Start Date</option>
-                    <option value="EndDate">End Date</option>
-                    <option value="EmploymentStatus">Employment Status</option>
-                    <option value="Shift">Shift</option>
-                    <option value="Manager">Manager</option>
-                    <option value="FavoriteColor">Favorite Color</option>
+                <form asp-action="Member" asp-controller="TeamMembers" 
+                      method="get">
+                    <select name="SortMethod">
+                        <option value="FirstName">First Name</option>
+                        <option value="LastName">Last Name</option>
+                        <option value="Address">Address</option>
+                        <option value="EmailAddress">Email Address</option>
+                        <option value="PhoneNumber">Phone Number</option>
+                        <option value="Position">Position</option>
+                        <option value="Department">Department</option>
+                        <option value="StartDate">Start Date</option>
+                        <option value="EndDate">End Date</option>
+                        <option value="EmploymentStatus">Employment Status</option>
+                        <option value="Shift">Shift</option>
+                        <option value="Manager">Manager</option>
+                        <option value="FavoriteColor">Favorite Color</option>
 
-                </select>
+                    </select>
+                    <input type="submit" value="Sort Team Members" />
+                </form>
                 <hr />
             </div>
 
             <!-- Search Employee -->
             <div>
                 <text>Search by Name:</text>
-                <form action="">
+                <form asp-action="" asp-controller="TeamMembers" method="get">
                     <div class="input-field">
-                         First Name: <input type="text" name="fname" /><br />
+                         First Name: <input type="text" name="name" /><br />
                     </div>
                     <div class="input-field">
-                        Last Name: <input type="text" name="lname" /><br />
+                        Last Name: <input type="text" name="name" /><br />
                     </div>
                     <input type="submit" value="Search" />
                 </form>
@@ -55,14 +59,14 @@
             <!-- Filter Options -->
             <div>
                 <text>Filter Employees:</text>
-                <form>
+                <form asp-action="" asp-controller="TeamMembers" method="get">
 
                     <!-- Department -->
                     <div>
                         <text>Department:</text> <br />
                         @foreach (var departments in Model.Department)
                         {
-                            <input type="checkbox" />@departments.Key <text>(@departments.Value)</text> <br />
+                            <input type="checkbox" value="@departments.Key"/>@departments.Key <text>(@departments.Value)</text> <br />
                         }
                         <hr />
                     </div>
@@ -72,7 +76,7 @@
                         <text>Employment:</text> <br />
                         @foreach (var employment in Model.Employment)
                         {
-                            <input type="checkbox" />@employment.Key <text>(@employment.Value)</text> <br />
+                            <input type="checkbox" value="@employment.Key"/>@employment.Key <text>(@employment.Value)</text> <br />
                         }
                         <hr />
                     </div>
@@ -82,7 +86,7 @@
                         <text>Position:</text> <br />
                         @foreach (var position in Model.Position)
                         {
-                            <input type="checkbox" />@position.Key <text>(@position.Value)</text> <br />
+                            <input type="checkbox" value="@position.Key"/>@position.Key <text>(@position.Value)</text> <br />
                         }
                         <hr />
                     </div>
@@ -92,7 +96,7 @@
                         <text>Shift:</text> <br />
                         @foreach (var shift in Model.Shift)
                         {
-                            <input type="checkbox" />@shift.Key <text>(@shift.Value)</text> <br />
+                            <input type="checkbox" value="@shift.Key"/>@shift.Key <text>(@shift.Value)</text> <br />
                         }
                         <hr />
                     </div>
@@ -102,7 +106,7 @@
                         <text>Manager:</text> <br />
                         @foreach (var manager in Model.Manager)
                         {
-                            <input type="checkbox" />@manager.Key <text>(@manager.Value)</text> <br />
+                            <input type="checkbox" value="@manager.Key"/>@manager.Key <text>(@manager.Value)</text> <br />
                         }
                         <hr />
                     </div>

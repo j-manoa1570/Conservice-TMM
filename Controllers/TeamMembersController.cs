@@ -10,14 +10,68 @@ namespace TMM_Asp.Controllers
     public class TeamMembersController : Controller
     {
         // GET: TeamMembers/Member
-        public IActionResult Member()
+        public IActionResult Member(string SortMethod)
         {
+            var employees = BuildTestRecords();
 
+
+            /*
+             * Sort Method
+             */
+            if (SortMethod == "FirstName")
+                employees.Sort((x, y) => x.FirstName.CompareTo(y.FirstName));
+            else if (SortMethod == "FavoriteColor")
+                employees.Sort((x, y) => x.FavoriteColor.CompareTo(y.FavoriteColor));
+            else if (SortMethod == "Address")
+                employees.Sort((x, y) => x.Address.CompareTo(y.Address));
+            else if (SortMethod == "EmailAddress")
+                employees.Sort((x, y) => x.EmailAddress.CompareTo(y.EmailAddress));
+            else if (SortMethod == "Department")
+                employees.Sort((x, y) => x.Department.CompareTo(y.Department));
+            else if (SortMethod == "Manager")
+                employees.Sort((x, y) => x.Manager.CompareTo(y.Manager));
+            else if (SortMethod == "Shift")
+                employees.Sort((x, y) => x.Shift.CompareTo(y.Shift));
+            else if (SortMethod == "StartDate")
+                employees.Sort((x, y) => x.StartDate.CompareTo(y.StartDate));
+            else if (SortMethod =="EndDate")
+                employees.Sort((x, y) => x.EndDate.CompareTo(y.EndDate));
+            else if (SortMethod == "EmploymentStatus")
+                employees.Sort((x, y) => x.EmploymentStatus.CompareTo(y.EmploymentStatus));
+            else if (SortMethod == "Photo")
+                employees.Sort((x, y) => x.Photo.CompareTo(y.Photo));
+            else if (SortMethod == "PhoneNumber")
+                employees.Sort((x, y) => x.PhoneNumber.CompareTo(y.PhoneNumber));
+            else if (SortMethod == "Position")
+                employees.Sort((x, y) => x.Position.CompareTo(y.Position));
+            else
+                employees.Sort((x, y) => x.LastName.CompareTo(y.LastName));
+
+            var team = MakeTeam(employees);
+
+            return View(team);
+        }
+
+        // GET: TeamMembers/FilterTeam
+        public IActionResult FilterTeam()
+        {
+            var employees = BuildTestRecords();
+            var team = MakeTeam(employees);
+
+            return View(team);
+
+        }
+
+
+        // GET: TeamMembers/Search
+        public IActionResult Search()
+        {
             var employees = BuildTestRecords();
             var team = MakeTeam(employees);
 
             return View(team);
         }
+
 
         // Build test records.
         List<MemberModel> BuildTestRecords ()
@@ -72,7 +126,7 @@ namespace TMM_Asp.Controllers
                 Shift = "24/7 for one whole year",
                 Manager = "Parents",
                 Photo = "None",
-                FavoriteColor = "clear"
+                FavoriteColor = "Clear"
             }
             };
 

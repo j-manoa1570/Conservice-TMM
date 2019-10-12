@@ -1,9 +1,6 @@
 ﻿
-
-@model TMM_Asp.Models.TeamMembersModel
-
 @{
-    ViewData["Title"] = "Member";
+    ViewData["Title"] = "FilterTeam";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -43,22 +40,22 @@
 
         <!-- Search Employee -->
         <div>
-        @using (Html.BeginForm("Search", "TeamMembers"))
-        {
-            
-            <text>Search by Name:</text>
-            <div class="input-field">
-                First Name: <input type="text" name="names"/><br/>
-            </div>
-            <div class="input-field">
-                Last Name: <input type="text" name="names"/><br/>
-            </div>
-            <input type="submit" value="Search" />
-            <hr />
-            
-        }
+            @using (Html.BeginForm("Search", "TeamMembers"))
+            {
+
+                <text>Search by Name:</text>
+                <div class="input-field">
+                    First Name: <input type="text" name="names" /><br />
+                </div>
+                <div class="input-field">
+                    Last Name: <input type="text" name="names" /><br />
+                </div>
+                <input type="submit" value="Search" />
+                <hr />
+
+            }
         </div>
-    
+
         <!-- Filter Options -->
         <div>
 
@@ -210,7 +207,7 @@
             @foreach (var member in Model.Employees)
             {
                 <tr>
-                    <td><input type="checkbox" value="@member.ID" name="employee"/></td>
+                    <td><input type="checkbox" value="@member.ID" name="employee" /></td>
                     <td>@member.FirstName</td>
                     <td>@member.LastName</td>
                     <td>@member.Address</td>

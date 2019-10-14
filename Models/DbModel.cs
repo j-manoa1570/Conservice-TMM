@@ -85,8 +85,8 @@ namespace TMM_Asp.Data
 
 
 
-            sqlite_cmd.CommandText = "INSERT INTO TeamMemberHistory (FirstName, LastName, TeamMemberID, Notes) Values ('" +
-                                     Values[0] + "','" + Values[1] + "','" + 
+            //sqlite_cmd.CommandText = "INSERT INTO TeamMemberHistory (FirstName, LastName, TeamMemberID, Notes) Values ('" +
+            //                         Values[0] + "','" + Values[1] + "','"
 
             //SQLiteCommand sqlite_cmd;
             //sqlite_cmd = conn.CreateCommand();

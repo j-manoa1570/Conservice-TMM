@@ -30,12 +30,12 @@ namespace TMM_Asp.Data
             modelBuilder.Entity<MemberModel>().ToTable("TeamMember");
         }
 
-        static SQLiteConnection CreateConnection()
+        public static SQLiteConnection CreateConnection()
         {
 
             SQLiteConnection sqlite_conn;
             // Create a new database connection:
-            sqlite_conn = new SQLiteConnection("Data Source=TeamMemberDB.db; Version = 3; New = True; Compress = True; ");
+            sqlite_conn = new SQLiteConnection("Data Source=TeamMemberDB.db;Version=3;New=True;Compress=True;");
          // Open the connection:
             try
             {
@@ -48,40 +48,46 @@ namespace TMM_Asp.Data
             return sqlite_conn;
         }
 
-        static void CreateTable(SQLiteConnection conn, string TableName)
+        public static void CreateTable(SQLiteConnection conn, string TableName)
         {
 
-            SQLiteCommand sqlite_cmd;
-            string CreateTable = "CREATE TABLE " + TableName + "(";
-            sqlite_cmd = conn.CreateCommand();
-            sqlite_cmd.CommandText = CreateTable;
-            
-            sqlite_cmd.ExecuteNonQuery();
             //SQLiteCommand sqlite_cmd;
-            //string Createsql = "CREATE TABLE SampleTable(Col1 VARCHAR(20), Col2 INT)";
-            //string Createsql1 = "CREATE TABLE SampleTable1(Col1 VARCHAR(20), Col2 INT)";
+            //string CreateTable = "CREATE TABLE " + TableName + "(";
             //sqlite_cmd = conn.CreateCommand();
-            //sqlite_cmd.CommandText = Createsql;
+            //sqlite_cmd.CommandText = CreateTable;
+            
             //sqlite_cmd.ExecuteNonQuery();
-            //sqlite_cmd.CommandText = Createsql1;
-            //sqlite_cmd.ExecuteNonQuery();
+
+            SQLiteCommand sqlite_cmd;
+            string Createsql = "CREATE TABLE SampleTable(Col1 VARCHAR(20), Col2 INT)";
+            string Createsql1 = "CREATE TABLE SampleTable1(Col1 VARCHAR(20), Col2 INT)";
+            sqlite_cmd = conn.CreateCommand();
+            sqlite_cmd.CommandText = Createsql;
+            sqlite_cmd.ExecuteNonQuery();
+            sqlite_cmd.CommandText = Createsql1;
+            sqlite_cmd.ExecuteNonQuery();
 
         }
 
-        static void InsertData(SQLiteConnection conn, string TableName, List<string> Values)
+        public static void InsertData(SQLiteConnection conn, string TableName, List<string> Values)
         {
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = conn.CreateCommand();
-            if (TableName == "TeamMember")
+            //if (TableName == "TeamMember")
                 sqlite_cmd.CommandText = "INSERT INTO " + TableName +
-                                         "(FirstName, LastName, Address, EmailAddress, PhoneNumber, Position, Department, StartDate, EndDate, EmploymentStatus, Shift, Manager, Photo, FavoriteColor) VALUES(/'" +
-                                         Values[0] + "/','" + Values[1] + "/','" + Values[2] + "/','" + Values[3] +
-                                         "/','" + Values[4] + "/','" + Values[5] + "/','" + Values[6] + "/','" +
-                                         Values[7] + "/','" + Values[8] + "/','" + Values[9]
-                                         + "/','" + Values[10] + "/','" + Values[11] + "/','" + Values[12] + "/','" +
-                                         Values[13] + "/','" + Values[14] + "'); ";
-            else if (TableName == "TeamMemberHistory")
-                sqlite_cmd.CommandText = "INSERT INT0 " + TableName;
+                                         " (FirstName, LastName, Address, EmailAddress, PhoneNumber, Position, Department, StartDate, EndDate, EmploymentStatus, Shift, Manager, Photo, FavoriteColor) VALUES ('" +
+                                         Values[0] + "','" + Values[1] + "','" + Values[2] + "','" + Values[3] +
+                                         "','" + Values[4] + "','" + Values[5] + "','" + Values[6] + "','" +
+                                         Values[7] + "','" + Values[8] + "','" + Values[9]
+                                         + "','" + Values[10] + "','" + Values[11] + "','"  +
+                                         "None" + "','" + Values[12] + "'); ";
+            sqlite_cmd.ExecuteNonQuery();
+
+
+
+            sqlite_cmd.CommandText = "INSERT INTO TeamMemberHistory (FirstName, LastName, TeamMemberID, Notes) Values ('" +
+                                     Values[0] + "','" + Values[1] + "','" + 
+
             //SQLiteCommand sqlite_cmd;
             //sqlite_cmd = conn.CreateCommand();
             //sqlite_cmd.CommandText = "INSERT INTO SampleTable(Col1, Col2) VALUES('Test Text ', 1); ";
@@ -97,12 +103,12 @@ namespace TMM_Asp.Data
 
         }
 
-        static void ReadData(SQLiteConnection conn)
+        public static void ReadData(SQLiteConnection conn, string FirstName, string LastName)
         {
             SQLiteDataReader sqlite_datareader;
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = conn.CreateCommand();
-            sqlite_cmd.CommandText = "SELECT * FROM SampleTable";
+            sqlite_cmd.CommandText = "SELECT ID FROM TeamMember WHERE FirstName='" + FirstName + " AND LastName='" + LastName + "'; ";
 
             sqlite_datareader = sqlite_cmd.ExecuteReader();
             while (sqlite_datareader.Read())

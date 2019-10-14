@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TMM_Asp.Models;
+using TMM_Asp.Data;
+using System.Data.SQLite;
+
 
 namespace TMM_Asp.Controllers
 {
@@ -78,6 +81,16 @@ namespace TMM_Asp.Controllers
             // TODO: SQL Remove from database
             // foreach (var id in employee)
             //    Remove from database user with id
+            var employees = BuildTestRecords();
+            var team = MakeTeam(employees);
+            return View(team);
+        }
+
+        public IActionResult NewEmployee(List<string> NewEmployee)
+        {
+            var sql_connection = DBModel.CreateConnection();
+            //DBModel.CreateTable(sql_connection, "TeamMember");
+            DBModel.InsertData(sql_connection, "TeamMember", NewEmployee);
             var employees = BuildTestRecords();
             var team = MakeTeam(employees);
             return View(team);
